@@ -148,6 +148,7 @@ function giveChange(billsArray) {
 function calc(quipu) {
    let number = eval(quipu.replace(/@+/g, dogs => dogs.length).replace(/~(?=~)/g, 0).replace(/~/g, ''));
    let result = [...'' + number].map(el => '@'.repeat(el)).join('~');
+   //String(number).split('') === [...'' + number]
    if (number % 10 === 0) {
       result += '~';
    }
@@ -156,5 +157,16 @@ function calc(quipu) {
 
 //Task 7
 function maxProd(n) {
-
+   switch (n % 3) {
+      case 0: {
+         return [new Array(n / 3).fill(3), 3 ** (n / 3)];
+      }
+      case 1: {
+         return [[4, ...new Array((n - 4) / 3).fill(3)], [...new Array((n - 4) / 3).fill(3), 2, 2], (3 ** ((n - 4) / 3) * 4)];
+      }
+      case 2: {
+         return [[...new Array((n - 2) / 3).fill(3), 2], (3 ** ((n - 2) / 3) * 2)];
+      }
+   }
 }
+console.log(maxProd(10));
