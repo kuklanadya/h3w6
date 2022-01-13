@@ -44,7 +44,7 @@ class PaginationHelper {
       return this.items.length;
    }
    pageItemCount(page) {
-      if (page > this.pageCount() - 1) {
+      if (page < 0 || page > this.pageCount() - 1) {
          return -1;
       }
       return page === this.pageCount() - 1 ? this.items.length % 4 : this.elPerPage;
@@ -53,6 +53,6 @@ class PaginationHelper {
       if (index < 0 || index > this.items.length) {
          return -1;
       }
-      return index > this.elPerPage ? Math.floor(index % this.elPerPage) : Math.floor(index / this.elPerPage);
+      return Math.floor(index / this.elPerPage);
    }
 }
